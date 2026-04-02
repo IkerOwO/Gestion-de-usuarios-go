@@ -2,18 +2,36 @@ package internal
 
 // Estructura de un usuario
 type Usuario struct {
-	nombreUsuario string
-	contraseña    string
-	fechaAlta     string
+	NombreUsuario string
+	Contraseña    string
+	FechaAlta     string
+	Baneado       bool
 }
 
-// Funcion guardar usuarios
-func guardarUsuarios()
-
+// Array de usuarios
+var UsuariosArray []Usuario
 
 // Funcion banear usuarios
-func usuarioBaneado(usuario string) bool
-
+func BanUser(usuario string, usuarios []Usuario) bool {
+	isBaneado := false
+	for i, u := range usuarios {
+		if u.NombreUsuario == usuario {
+			usuarios[i].Baneado = true
+			isBaneado = true
+			break
+		}
+	}
+	return isBaneado
+}
 
 // Funcion comprobar si un usuario esta baneado
-func isUsuarioBaneado(usuario string) bool
+func IsUsuarioBaneado(usuario string, usuarios []Usuario) bool {
+	isBaneado := false
+	for _, u := range usuarios {
+		if u.NombreUsuario == usuario {
+			isBaneado = u.Baneado
+			break
+		}
+	}
+	return isBaneado
+}
