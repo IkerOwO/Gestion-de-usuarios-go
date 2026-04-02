@@ -34,6 +34,36 @@ func CrearUsuario(nombreUsuario string, contraseña string, fechaAlta string){
 	fmt.Print("\033[H\033[2J")
 }
 
+// Funcion eliminar usuarios
+func EliminarUsuario(usuario string, usuarios []Usuario) bool {
+	for i,u := range usuarios{
+		if u.NombreUsuario == usuario{
+			// Eliminamos el usuario
+			UsuariosArray = append(UsuariosArray[:i], UsuariosArray[i+1:]...)
+			fmt.Println("Usuario eliminado")
+			time.Sleep(2 * time.Second)
+			fmt.Print("\033[H\033[2J")
+			return true
+		}
+	}
+	return false
+}
+
+// Funcion actualizar usuarios
+func ActualizarUsuario(usuario string, contraseña string, fechaAlta string, usuarios []Usuario) bool {
+	for i, u := range usuarios {
+		if u.NombreUsuario == usuario {
+			usuarios[i].Contraseña = contraseña
+			usuarios[i].FechaAlta = fechaAlta
+			fmt.Println("Usuario Actualizado")
+			time.Sleep(2 * time.Second)
+			fmt.Print("\033[H\033[2J")
+			return true
+		}
+	}
+	return false
+}
+
 // Funcion banear usuarios
 func BanUser(usuario string, usuarios []Usuario) bool {
 	isBaneado := false
@@ -57,4 +87,16 @@ func IsUsuarioBaneado(usuario string, usuarios []Usuario) bool {
 		}
 	}
 	return isBaneado
+}
+
+// Funcion listar usuarios
+func ListarUsuarios(usuarios []Usuario) bool {
+	for _, u := range usuarios{
+		fmt.Printf("Nombre de usuario: %s\n", u.NombreUsuario)
+		fmt.Printf("Contraseña: %s\n", u.Contraseña)
+		fmt.Printf("Fecha de alta: %s\n", u.FechaAlta)
+		fmt.Printf("Baneado: %t\n", u.Baneado)
+		fmt.Println("----------------------------------------")
+	}
+	return true
 }
