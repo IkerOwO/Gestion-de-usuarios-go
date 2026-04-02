@@ -99,11 +99,32 @@ func main(){
 				}
 				time.Sleep(2 * time.Second)
 			case 4:
-
+				var(
+					nombreUsuario string
+				)
+				fmt.Println("Introduce el nombre de usuario a banear: ")
+				fmt.Scan(&nombreUsuario)
+				if internal.BanUser(nombreUsuario, internal.UsuariosArray){
+					fmt.Println("Usuario baneado correctamente")
+				}else{
+					fmt.Println("Usuario no encontrado")
+				}
+				time.Sleep(2 * time.Second)
 			case 5:
-
+				var(
+					nombreUsuario string
+				)
+				fmt.Println("Introduce el nombre de usuario a comprobar: ")
+				fmt.Scan(&nombreUsuario)
+				if internal.IsUsuarioBaneado(nombreUsuario, internal.UsuariosArray){
+					fmt.Println("Usuario baneado correctamente")
+				}else{
+					fmt.Println("Usuario no encontrado")
+				}
+				time.Sleep(2 * time.Second)
 			case 6:
-
+				internal.ListarUsuarios(internal.UsuariosArray)
+				time.Sleep(2 * time.Second)
 			case 7:
 				fmt.Println("Saliendo del programa...")
 				time.Sleep(2 * time.Second)

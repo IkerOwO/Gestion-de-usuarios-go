@@ -90,3 +90,13 @@ func IsUsuarioBaneado(usuario string, usuarios []Usuario) bool {
 }
 
 // Funcion listar usuarios
+func ListarUsuarios(usuarios []Usuario) bool {
+	for _, u := range usuarios{
+		fmt.Printf("Nombre de usuario: %s\n", u.NombreUsuario)
+		fmt.Printf("Contraseña: %s\n", u.Contraseña)
+		fmt.Printf("Fecha de alta: %s\n", u.FechaAlta)
+		fmt.Printf("Baneado: %t\n", u.Baneado)
+		fmt.Println("----------------------------------------")
+	}
+	return true
+}
