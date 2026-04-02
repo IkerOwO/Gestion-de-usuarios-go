@@ -26,26 +26,6 @@ func printMenu(){
 	fmt.Println("7. Salir")
 }
 
-func pedirUsuario(){
-	var(
-		nombreUsuario string
-		contraseña string
-		fechaAlta string
-	)
-	// Pedimos el nombre de usuario
-	fmt.Println("Introduce el nombre de usuario: ")
-	fmt.Scan(&nombreUsuario)
-	// Pedimos la contraseña
-	fmt.Println("Introduce la contraseña: ")
-	fmt.Scan(&contraseña)
-	// Pedimos la fecha de alta
-	fmt.Println("Introduce la fecha de alta: ")
-	fmt.Scan(&fechaAlta)
-
-	internal.CrearUsuario(nombreUsuario, contraseña, fechaAlta)
-}
-
-
 func main(){
 	var(
 		opc int
@@ -72,11 +52,52 @@ func main(){
 	
 		switch opc {
 			case 1:
-				pedirUsuario()
+				var(
+					nombreUsuario string
+					contraseña string
+					fechaAlta string
+				)
+				// Pedimos el nombre de usuario
+				fmt.Println("Introduce el nombre de usuario: ")
+				fmt.Scan(&nombreUsuario)
+				// Pedimos la contraseña
+				fmt.Println("Introduce la contraseña: ")
+				fmt.Scan(&contraseña)
+				// Pedimos la fecha de alta
+				fmt.Println("Introduce la fecha de alta: ")
+				fmt.Scan(&fechaAlta)
+
+				internal.CrearUsuario(nombreUsuario, contraseña, fechaAlta)
 			case 2:
-
+				var(
+					nombreUsuario string
+				)
+				fmt.Println("Introduce el nombre de usuario: ")
+				fmt.Scan(&nombreUsuario)
+				if internal.EliminarUsuario(nombreUsuario, internal.UsuariosArray){
+					fmt.Println("Usuario eliminado correctamente")
+				}else{
+					fmt.Println("Usuario no encontrado")
+				}
+				time.Sleep(2 * time.Second)
 			case 3:
-
+				var(
+					nombreUsuario string
+					contraseña string
+					fechaAlta string
+				)
+				fmt.Println("Introduce el nombre de usuario a actualizar: ")
+				fmt.Scan(&nombreUsuario)
+				fmt.Println("Introduce la nueva contraseña: ")
+				fmt.Scan(&contraseña)
+				fmt.Println("Introduce la nueva fecha de alta: ")
+				fmt.Scan(&fechaAlta)
+				if internal.ActualizarUsuario(nombreUsuario, contraseña, fechaAlta, internal.UsuariosArray){
+					fmt.Println("Usuario actualizado correctamente")
+				}else{
+					fmt.Println("Usuario no encontrado")
+				}
+				time.Sleep(2 * time.Second)
 			case 4:
 
 			case 5:
